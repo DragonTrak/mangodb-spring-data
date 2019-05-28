@@ -35,8 +35,7 @@ public class TestDemo {
         MongoOperations mongoOps = new MongoTemplate(new SimpleMongoDbFactory(mongoClient, "database"));
         mongoOps.insert(new Person("Joe", 34));
         log.info(mongoOps.findOne(new Query(where("name").is("Joe")), Person.class));
-
-//        mongoOps.dropCollection("person");
+        mongoOps.dropCollection("person");
     }
 
 
@@ -44,7 +43,6 @@ public class TestDemo {
     public void test2() {
         mongoTemplate.insert(new Person("Joe", 34));
         log.info(mongoTemplate.findOne(new Query(where("name").is("Joe")), Person.class));
-
-//        mongoTemplate.dropCollection("person");
+        mongoTemplate.dropCollection("person");
     }
 }
