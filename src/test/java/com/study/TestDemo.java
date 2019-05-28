@@ -27,6 +27,9 @@ public class TestDemo {
 
     @Autowired
     private MongoClient mongoClient;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
     @Test
     public void test1() {
         MongoOperations mongoOps = new MongoTemplate(new SimpleMongoDbFactory(mongoClient, "database"));
@@ -34,5 +37,14 @@ public class TestDemo {
         log.info(mongoOps.findOne(new Query(where("name").is("Joe")), Person.class));
 
 //        mongoOps.dropCollection("person");
+    }
+
+
+    @Test
+    public void test2() {
+        mongoTemplate.insert(new Person("Joe", 34));
+        log.info(mongoTemplate.findOne(new Query(where("name").is("Joe")), Person.class));
+
+//        mongoTemplate.dropCollection("person");
     }
 }
